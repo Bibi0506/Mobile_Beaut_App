@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="css/style.css"/>
+    <title>About Me</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonia Massei | Professional Beauty Treatments at Home</title>
+    <!-- external CSS link -->
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/normalise.css">
+</head>
+
+<body>
+    {% include "header.html" %}
+    <!-- HEADER / NAVIGATION -->
+    <header class="topnav">
+        <!-- LEFT: Social Media Icons -->
+        <div class="topnav__left">
+            <a href="https://www.instagram.com/sonia_mobile_beauty/" target="_blank" aria-label="Instagram">
+                <img src="icons/instagram-svgrepo-com.svg" alt="Instagram icon" class="icon" />
+            </a>
+            <a href="https://wa.me/447930287660" target="_blank" aria-label="Whatsapp">
+                <img src="icons/whatsapp-svgrepo-com.svg" alt="WhatsApp" class="icon">
+            </a>
+        </div>
+
+        <!-- CENTER: Logo -->
+        <div class="topnav__center">
+            <a href="index.html">
+                <img src="images/logoSonia.jpeg" alt="Sonia's Mobile Beauty Logo" class="logo-img">
+            </a>
+        </div>
+
+        <!-- RIGHT: Navigation Menu -->
+        <div class="topnav__right">
+            <!-- Hamburger Button -->
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu">
+                <img src="icons/menu-burger-horizontal-svgrepo-com (1).svg" alt="Menu" class="menu-img">
+                MENU
+            </button>
+            <!-- Navigation Links -->
+            <nav class="menu" id="main-menu">
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="treatments.html">Treatments</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="https://wa.me/447930287660" class="book-now-btn">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <h1>A little bit about me...</h1>
+    <section>
+        <img>
+        <p>Hi! My name is Sonia and I am a full time wife and mom to 2 beautiful little boys names Lewis and Thomas. I love being a Beautician in my free time as I love taking care of myself and making women feel beautiful. </p>
+    </section>
+
+    <section>
+        <p>Append here certificates and awards</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- LEFT SIDE: Social Icons -->
+        <div class="footer__left">
+            <h3>Follow Me</h3>
+            <div class="footer__icons">
+                <a href="https://www.instagram.com/sonia_mobile_beauty/" target="_blank" aria-label="Instagram">
+                    <img src="icons/instagram-svgrepo-com.svg" alt="Instagram">
+                </a>
+                <a href="https://wa.me/447930287660" target="_blank" aria-label="WhatsApp">
+                    <img src="icons/whatsapp-svgrepo-com.svg" alt="WhatsApp">
+                </a>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: Working Hours -->
+        <div class="footer__right">
+            <h3>Working Hours</h3>
+            <p>Monday: <strong>9:30am – 8pm</strong></p>
+            <p>Tuesday – Friday: <strong>4:30pm – 8pm</strong></p>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer__bottom">
+            <p>
+                &copy; 2026 Sonia's Mobile Beauty. Designed by 
+                <a href="https://www.linkedin.com/in/roberta-capuano-4171961b9/" target="_blank" rel="noopener">
+                Roberta
+                </a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
