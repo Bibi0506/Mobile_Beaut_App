@@ -390,7 +390,7 @@ main {
 }
 
 /* Area covered Section - Flexbox */
-.area-covered {
+.container {
     padding: var(--spacing-xl) var(--spacing-md);
     background: linear-gradient(135deg, #EEE9A0 0%, var(--lime-green) 100%);
 }
@@ -399,6 +399,9 @@ main {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-lg);
     color: var(--dark-text);
+}
+img{
+    height: 100px;
 }
 
 .benefits-grid {
