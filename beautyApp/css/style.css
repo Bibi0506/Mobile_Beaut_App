@@ -438,7 +438,24 @@ img{
 .benefit p {
     color: var(--light-text);
 }
+/* Price list*/
+.treatment-title{
+    margin-top: 60px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-bottom: #2d2d2d 1px solid;
+    padding-bottom: 10px;
 
+}
+
+.treatment-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #2d2d2d;
+}
 /* CTA Section - Flexbox */
 .cta-section {
     display: flex;
