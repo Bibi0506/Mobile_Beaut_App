@@ -438,7 +438,23 @@ img{
 .benefit p {
     color: var(--light-text);
 }
-/* Price list*/
+
+/* Tratment page */
+
+.photos{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.nail-art{
+    height: 250px;
+    width: 250px;
+    border-radius: 50px;
+}
+.treatment-section{
+    padding: var(--spacing-xl) var(--spacing-md);
+    background-color: var(--white);
+}
 .treatment-title{
     margin-top: 60px;
     letter-spacing: 2px;
@@ -446,6 +462,7 @@ img{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-bottom: #2d2d2d 1px solid;
     padding-bottom: 10px;
+    background-color: var(--lime-green);
 
 }
 
