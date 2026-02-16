@@ -160,7 +160,7 @@ p{
 
 
 
-/* CENTER: Logo - Flexbox
+CENTER: Logo - Flexbox
 .topnav__center {
     display: flex;
     justify-content: center;
@@ -177,12 +177,10 @@ p{
     height: 250px;
     margin-top: 100px;
     border-radius: 60%;
-    overflow: hidden;
     object-fit: fill;
-    
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
-*/
+
 /* RIGHT: Menu & Hamburger - Flexbox */
 .topnav__right {
     display: flex;
@@ -374,9 +372,10 @@ main {
 
 /* main page Buttons - Flexbox */
 .generalButton {
+    padding: 20px;
     display: flex;
-    justify-content: center;
-    margin-top: var(--spacing-lg);
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .secondary-button {
@@ -401,7 +400,6 @@ main {
 .container {
     padding: var(--spacing-xl) var(--spacing-md);
     background-color: pink;
-    /*background: linear-gradient(135deg, #EEE9A0 0%, var(--lime-green) 100%);*/
 }
 .container h2 {
     text-align: center;
@@ -484,24 +482,12 @@ img{
 }
 /* CTA Section - Flexbox */
 .cta-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--spacing-xl) var(--spacing-md);
-    text-align: center;
-    color: var(--sage-green);
+    margin: 30px;
+    
 }
-
 .cta-section h2 {
     font-size: 2.5rem;
     margin-bottom: var(--spacing-sm);
-}
-
-.cta-section p {
-    font-size: 1.2rem;
-    margin-bottom: var(--spacing-md);
-    font-weight: 300;
 }
 
 
@@ -513,14 +499,15 @@ img{
     justify-content: space-between;
     align-items: flex-start;
     padding: 1rem 2rem;
+    margin-top: 30px;
     width: 100%;
-    height: 250px;
-    background-image: url("/beautyApp/images/—Pngtree—aesthetic\ green\ gold\ marble\ wallpaper_1412960.png");
+    height: 300px;
+    background-color: var(--sage-green);
     background-size: cover;
     gap: 1rem;
     flex-wrap: wrap;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}*/
+}
 
 /* LEFT - Flexbox */
 .footer__left {
@@ -590,8 +577,6 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: var(--spacing-md);
-    padding-top: var(--spacing-md);
     border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -640,8 +625,8 @@ img{
     }
     
     .logo-img {
-        width: 70px;
-        height: 70px;
+        width: 150px;
+        height: 150px;
     }
     
     /* Hero adjustments */
@@ -654,7 +639,7 @@ img{
         font-size: 2rem;
     }
     
-    .hero__subtitle {
+    .hero__message {
         font-size: 1.1rem;
     }
     
