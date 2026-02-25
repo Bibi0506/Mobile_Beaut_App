@@ -1,0 +1,860 @@
+/* ==========================================
+   IMPORTS
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;600&family=Great+Vibes&display=swap');
+
+/* ==========================================
+   CSS RESET / BOX MODEL
+   ========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================
+   CSS VARIABLES — Single source of truth
+   ========================================== */
+:root {
+  /* Brand Colours */
+  --primary-pink:   #D49696;   /* Dusty rose */
+  --sage-green:     #94A69A;   /* Muted sage  */
+  --warm-beige:     #D2A28B;   /* Terracotta  */
+  --soft-blue:      #C4CCD0;   /* Blue-grey   */
+  --pale-taupe:     #DCDDD8;
+  --deep-green:     #819171;
+  --lime-green:     #ADD69E;
+  --pale-green:     #DCE6AC;
+  --white-nav:      #FBFCF9;
+
+  /* Text */
+  --dark-text:      #2d2d2d;
+  --light-text:     #666666;
+  --white:          #ffffff;
+
+  /* UI */
+  --border-color:   #e8e8e8;
+  --shadow-sm:      0 2px 8px  rgba(0,0,0,0.10);
+  --shadow-md:      0 6px 20px rgba(0,0,0,0.12);
+  --shadow-lg:      0 12px 30px rgba(0,0,0,0.15);
+
+  /* Typography */
+  --font-heading:   'Playfair Display', Georgia, serif;
+  --font-body:      'Lato', 'Helvetica Neue', sans-serif;
+  --font-script:    'Great Vibes', cursive;
+
+  /* Spacing scale */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  3rem;
+  --space-xl:  4rem;
+}
+/* Nav height gives room; logo overflows downward into the hero */
+:root {
+  --nav-height: 90px;
+  --logo-size: 140px;
+  --logo-overflow: 50px; /* how much logo drops below nav */
+}
+
+body {
+  /* extra padding so hero content isn't hidden behind the overflowing logo */
+  padding-top: calc(var(--nav-height) + var(--logo-overflow));
+}
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dark-text);
+  background-color: var(--white);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================
+   TYPOGRAPHY — consistent hierarchy
+   ========================================== */
+
+/* Display / script headings */
+.welcome {
+  font-family: var(--font-script);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--dark-text);
+}
+
+/* Section headings */
+h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--dark-text);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--dark-text);
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--dark-text);
+}
+
+h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--dark-text);
+}
+
+/* Body text — clean, readable */
+p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--light-text);
+  margin-bottom: var(--space-sm);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   LAYOUT UTILITY
+   ========================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--light-text);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-body);
+}
+
+/* ==========================================
+   HEADER / NAVIGATION
+   ========================================== */
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  background-color: var(--sage-green);
+  box-shadow: var(--shadow-sm);
+}
+
+/* LEFT: social icons */
+.topnav__left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+}
+
+.icon {
+  width: 26px;
+  height: 26px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.topnav__left a:hover .icon {
+  transform: scale(1.2);
+  opacity: 0.75;
+}
+
+/* CENTER: logo overflows below the navbar into the hero */
+.topnav__center {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* anchor logo to the bottom of the nav */
+  flex: 1 1 auto;
+  /* let the logo spill out below */
+  overflow: visible;
+}
+
+.logo-img {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  border-radius: 50%;
+  object-fit: contain;        /* show the full image, nothing cut off */
+  object-position: center;
+  background-color: var(--white); /* fills any transparent padding in the image */
+  border: 4px solid var(--primary-pink); /* pink brand ring */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease;
+  /* push it down so half sits below the nav */
+  transform: translateY(var(--logo-overflow));
+  position: relative;
+  z-index: 1001; /* above the nav shadow */
+}
+
+.logo-img:hover {
+  transform: translateY(var(--logo-overflow)) scale(1.05);
+}
+
+/* RIGHT: hamburger + dropdown menu */
+.topnav__right {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.menu-img {
+  width: 22px;
+  height: 22px;
+}
+
+/* Dropdown menu */
+.menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: none;
+  min-width: 220px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.menu li {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.menu li:last-child {
+  border-bottom: none;
+}
+
+.menu li a {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1.25rem;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--dark-text);
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.menu li a:hover,
+.menu li a.active {
+  background: var(--pale-taupe);
+  padding-left: 1.75rem;
+}
+
+.book-now-btn {
+  background: var(--primary-pink) !important;
+  color: var(--white) !important;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.book-now-btn:hover {
+  background: var(--warm-beige) !important;
+  padding-left: 1.25rem !important;
+}
+
+/* Menu opens ONLY via JS toggle — class .active added by hamburger click */
+.menu.active {
+  display: block;
+}
+
+/* ==========================================
+   MAIN
+   ========================================== */
+main {
+  min-height: calc(100vh - var(--nav-height) - 300px);
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--logo-overflow) + var(--space-xl)) var(--space-md) var(--space-xl);
+  min-height: 320px;
+  text-align: center;
+  background: linear-gradient(to bottom, var(--primary-pink) 0%, rgba(212,150,150,0.08) 30%, transparent 60%);
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 700px;
+}
+
+.hero__message {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 300;
+  color: var(--light-text);
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================
+   POPULAR TREATMENTS SECTION
+   ========================================== */
+
+.popular-treatments h2 {
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+/* Treatment grid */
+.treatment-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+  margin: var(--space-md) 0;
+}
+
+.treatment-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  border-radius: 20px;
+  padding: var(--space-md);
+  flex: 1 1 280px;
+  max-width: 350px;
+  height: 380px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Dark gradient overlay for text readability */
+.treatment-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, rgba(0,0,0,0.15) 50%, transparent 100%);
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.treatment-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.treatment-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.treatment-card h3 {
+  color: var(--white);
+  font-size: 1.4rem;
+  margin-bottom: var(--space-xs);
+}
+
+.treatment-card p {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+#card1 { background-image: url("/beautyApp/images/mani.1.png"); }
+#card2 { background-image: url("/beautyApp/images/pedi.JPG"); }
+#card3 { background-image: url("/beautyApp/images/mani2.png"); }
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.generalButton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  justify-content: center;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--sage-green);
+  color: var(--dark-text);
+  padding: 0.75rem 1.75rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.secondary-button:hover {
+  background: var(--sage-green);
+  color: var(--white);
+}
+
+/* CTA h2 and button alignment handled in pink accents section below */
+
+/* ==========================================
+   AREA COVERED SECTION
+   ========================================== */
+.area-covered {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--white);
+}
+
+.area-covered h2 {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.benefits-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.benefit,
+.location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-md);
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  flex: 1 1 240px;
+  max-width: 340px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit:hover,
+.location:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.benefit__icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-sm);
+}
+
+/* Location icon images */
+.location img {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-sm);
+}
+
+.location h3,
+.benefit h3 {
+  color: var(--deep-green);
+  margin-bottom: var(--space-xs);
+}
+
+.location p,
+.benefit p {
+  color: var(--light-text);
+  font-size: 0.95rem;
+}
+
+/* ==========================================
+   TREATMENTS PAGE
+   ========================================== */
+.photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.nail-art {
+  width: 220px;
+  height: 220px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.nail-art:hover {
+  transform: scale(1.03);
+}
+
+.treatment-section {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--white);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.treatment-title {
+  margin-top: var(--space-lg);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--dark-text);
+  border-bottom: 2px solid var(--sage-green);
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  background-color: var(--lime-green);
+  border-radius: 6px 6px 0 0;
+}
+
+.treatment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  gap: var(--space-sm);
+}
+
+.treatment-row:last-child {
+  border-bottom: none;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+  margin-top: var(--space-lg);
+  background-color: var(--sage-green);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+}
+
+.footer__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer__left h3 {
+  color: var(--dark-text);
+  font-size: 1.1rem;
+}
+
+/* Footer social icons */
+.footer__icons {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.footer__icons img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.footer__icons a:hover img {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Footer right */
+.footer__right {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  max-width: 320px;
+}
+
+.footer__right h3 {
+  color: var(--dark-text);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer__right p {
+  color: var(--dark-text);
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+
+.footer__right strong {
+  color: var(--dark-text);
+  font-weight: 600;
+}
+
+.footer__note {
+  margin-top: var(--space-sm);
+  font-size: 0.85rem;
+  color: rgba(45, 45, 45, 0.65);
+  font-style: italic;
+}
+
+/* Footer bottom bar */
+.footer__bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255,255,255,0.35);
+}
+
+.footer__bottom p {
+  color: var(--dark-text);
+  font-size: 0.85rem;
+}
+
+/* ==========================================
+   PINK ACCENTS — brand colour touches
+   ========================================== */
+
+/* Thin pink top border on the popular treatments section */
+.popular-treatments {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--white-nav);
+  border-top: 4px solid var(--primary-pink);
+}
+
+/* Pink underline on section h2 headings */
+.popular-treatments h2::after,
+.area-covered h2::after,
+.cta-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-pink);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Pink tint on the CTA section */
+.cta-section {
+  padding: var(--space-xl) var(--space-md);
+  background: linear-gradient(135deg, rgba(212,150,150,0.18) 0%, var(--pale-taupe) 100%);
+  border-top: 4px solid var(--primary-pink);
+  border-bottom: 4px solid var(--primary-pink);
+}
+
+.cta-section h2 {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.cta-section .generalButton {
+  justify-content: center;
+}
+
+/* Primary pink button variant */
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-pink);
+  color: var(--white);
+  border: 2px solid var(--primary-pink);
+  padding: 0.75rem 1.75rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.primary-button:hover {
+  background: var(--warm-beige);
+  border-color: var(--warm-beige);
+  color: var(--white);
+}
+
+/* Pink footer accent strip */
+.footer {
+  border-top: 4px solid var(--primary-pink);
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE (≤768px)
+   ========================================== */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 70px;
+    --logo-size: 100px;
+    --logo-overflow: 35px;
+  }
+
+  body {
+    padding-top: calc(var(--nav-height) + var(--logo-overflow));
+  }
+
+  .topnav {
+    padding: 0 1rem;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Full-width mobile dropdown */
+  .menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Hero extra top padding for logo on mobile */
+  .hero {
+    padding-top: calc(var(--logo-overflow) + var(--space-lg));
+  }
+
+  .hero__message {
+    font-size: 1rem;
+  }
+
+  /* Treatment grid — full width cards on mobile */
+  .treatment-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .treatment-card {
+    max-width: 100%;
+    flex: unset;
+  }
+
+  /* Buttons — stack nicely */
+  .generalButton {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .secondary-button,
+  .primary-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Benefits grid */
+  .benefits-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .benefit,
+  .location {
+    max-width: 100%;
+    flex: unset;
+  }
+
+  /* Footer */
+  .footer {
+    flex-direction: column;
+    padding: var(--space-md) var(--space-sm);
+    text-align: center;
+  }
+
+  .footer__left,
+  .footer__right {
+    width: 100%;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .footer__icons {
+    justify-content: center;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — TABLET (769px–1024px)
+   ========================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .treatment-grid,
+  .benefits-grid {
+    justify-content: space-evenly;
+  }
+
+  .treatment-card,
+  .benefit,
+  .location {
+    flex: 1 1 calc(50% - var(--space-md));
+  }
+}

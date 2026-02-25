@@ -104,9 +104,6 @@ p{
 /* ==========================================
    HEADER / NAVIGATION - FLEXBOX LAYOUT
    ========================================== */
-
-
-/* LEFT: Social Icons - Flexbox */
 .topnav {
     display: flex;
     align-items: center;
@@ -140,43 +137,19 @@ p{
 }
 
 
-
-/*
-.topnav__center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 220px;          
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-*/
-
-
-
-
-
-CENTER: Logo - Flexbox
 .topnav__center {
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1 1 auto;
-}
-
-.topnav__center a {
-    display: flex;
+    
 }
 
 .logo-img {
     width: 300px;
     height: 250px;
     margin-top: 100px;
-    border-radius: 60%;
+    border-radius: 70%;
     object-fit: fill;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
@@ -346,6 +319,7 @@ main {
 #card1{
     background-image: url("/beautyApp/images/mani.1.png");
     background-size: cover;
+    
 }
 #card2{
     background-image: url("/beautyApp/images/pedi.JPG");
