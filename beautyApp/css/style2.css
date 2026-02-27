@@ -564,7 +564,13 @@ main {
   max-width: 900px;
   margin: 0 auto;
 }
-
+.welcome{
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--dark-text);
+}
 
 .treatment-title {
   margin-top: var(--space-lg);
@@ -592,6 +598,121 @@ main {
 .treatment-row:last-child {
   border-bottom: none;
 }
+/* ==========================================
+   ABOUT ME
+   ========================================== */
+
+/* Main layout: photo left, text right */
+.about__container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Photo column */
+.foto_Sonia {
+  flex: 0 0 auto;
+}
+
+.foto_Sonia .sonia {
+  width: 300px;
+  height: 380px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  border: 4px solid var(--primary-pink);
+}
+
+/* Text column */
+.intro {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.intro .intro__heading {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--dark-text);
+  margin-bottom: var(--space-xs);
+}
+
+.intro .intro__heading::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--primary-pink);
+  margin-top: 0.5rem;
+  border-radius: 2px;
+}
+
+.intro p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--light-text);
+  margin-bottom: 0;
+}
+
+/* Certificates section — sits below the bio */
+.certificates {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--white-nav);
+  border-top: 4px solid var(--primary-pink);
+  text-align: center;
+}
+
+.certificates h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-pink);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.certificates > p {
+  color: var(--light-text);
+  margin: var(--space-xs) auto var(--space-lg);
+  max-width: 500px;
+}
+
+.certificates .photos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  padding: 0;
+}
+
+.certificates .nail-art {
+  width: 260px;
+  height: 200px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border: 2px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificates .nail-art:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+
 
 /* ==========================================
    FOOTER
