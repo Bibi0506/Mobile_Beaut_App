@@ -546,10 +546,10 @@ main {
 }
 
 .nail-art {
-  width: 220px;
-  height: 220px;
+  width: 250px;
+  height: 240px;
   border-radius: 20px;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease;
 }
