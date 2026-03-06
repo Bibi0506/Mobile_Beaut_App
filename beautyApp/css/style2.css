@@ -1,55 +1,64 @@
 /* ==========================================
-   IMPORTS
+   1. IMPORTS & VARIABLES
    ========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;600&family=Great+Vibes&display=swap');
 
-/* ==========================================
-   CSS RESET / BOX MODEL
-   ========================================== */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* ==========================================
-   CSS VARIABLES — Single source of truth
-   ========================================== */
 :root {
   /* Brand Colours */
-  --primary-pink:   #D49696;   /* Dusty rose */
-  --sage-green:     #94A69A;   /* Muted sage  */
-  --warm-beige:     #D2A28B;   /* Terracotta  */
-  --soft-blue:      #C4CCD0;   /* Blue-grey   */
+  --primary-pink:   #D49696;
+  --sage-green:     #94A69A;
+  --warm-beige:     #D2A28B;
+  --soft-blue:      #C4CCD0;
   --pale-taupe:     #DCDDD8;
   --deep-green:     #819171;
-  --lime-green:     #ADD69E;
-  --pale-green:     #DCE6AC;
   --white-nav:      #FBFCF9;
 
-  /* Text */
+  /* Text & UI */
   --dark-text:      #2d2d2d;
   --light-text:     #666666;
   --white:          #ffffff;
-
-  /* UI */
   --border-color:   #e8e8e8;
+  
   --shadow-sm:      0 2px 8px  rgba(0,0,0,0.10);
   --shadow-md:      0 6px 20px rgba(0,0,0,0.12);
   --shadow-lg:      0 12px 30px rgba(0,0,0,0.15);
 
-  /* Typography */
   --font-heading:   'Playfair Display', Georgia, serif;
   --font-body:      'Lato', 'Helvetica Neue', sans-serif;
   --font-script:    'Great Vibes', cursive;
 
-  /* Spacing scale */
+  --nav-height: 130px;
+  --logo-overflow: 50px;
   --space-xs:  0.5rem;
   --space-sm:  1rem;
   --space-md:  2rem;
   --space-lg:  3rem;
   --space-xl:  4rem;
 }
+
+
+/* ==========================================
+   2. RESET & BASE STYLES
+   ========================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dark-text);
+  background-color: var(--white);
+  padding-top: calc(var(--nav-height) + var(--logo-overflow));
+}
+img { display: block; max-width: 100%; height: auto; }
+
+/* Typography */
+.welcome { font-family: var(--font-script); font-size: clamp(4rem, 12vw, 8rem); color: var(--dark-text); }
+h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+h2 { font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; text-align: center; }
+p { font-family: var(--font-body); color: var(--light-text); margin-bottom: var(--space-sm); }
+
+
 /* Nav height  */
 :root {
   --nav-height: 130px;
@@ -246,32 +255,62 @@ p:last-child {
   color: var(--dark-text);
   letter-spacing: 0.05em;
   border-radius: 6px;
-  
-}
-
-.menu:hover {
-  background: rgba(255,255,255,0.25);
 }
 
 .menu-img {
   width: 28px;
   height: 28px;
 }
-
-/* Dropdown menu */
+/*OPEN AND CLOSE MENU*/
+/* --- Base Menu Styling --- */
 .menu {
+  display: none; /* Hidden by default */
   position: absolute;
   top: 100%;
   right: 0;
   background: var(--white);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: none;
   min-width: 220px;
   border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
   overflow: hidden;
 }
 
+/* This is the class our JavaScript will toggle */
+.menu.active {
+    display: block !important;
+}
+
+/* --- The Close (X) Button --- */
+.close-menu {
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--primary-pink);
+    font-weight: 300;
+}
+
+/* --- Mobile Specific View --- */
+@media (max-width: 768px) {
+  .menu {
+    position: fixed; /* Overlays the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    }
+    
+  .menu ul {
+    padding-bottom: 2rem;
+    }
+}
 .menu ul {
   display: flex;
   flex-direction: column;
@@ -300,8 +339,8 @@ p:last-child {
 .menu li a:hover,
 .menu li a.active {
   background: var(--sage-green);
-    color: var(--dark-text);
-    padding-left: 2rem;
+  color: var(--dark-text);
+  padding-left: 2rem;
 }
 
 .book-now-btn {
@@ -315,14 +354,11 @@ p:last-child {
   background: var(--deep-green) !important;
   padding-left: 1.25rem !important;
 }
-.topnav__right:hover .menu {
-    display: block;
-}
-/* Menu opens ONLY via JS toggle — class .active added by hamburger click 
+
 .menu.active {
-  display: block;
+  display: block !important;
 }
-*/
+
 /* ==========================================
    MAIN
    ========================================== */
@@ -335,7 +371,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--logo-overflow) + var(--space-xl)) var(--space-md) var(--space-xl);
+  padding: calc(var(--logo-overflow) + var(--space-xs)) var(--space-md) var(--space-xl);
   min-height: 320px;
   text-align: center;
   background: linear-gradient(to top, var(--primary-pink) 0%, rgba(212,150,150,0.08) 30%, transparent 60%);
@@ -356,9 +392,101 @@ main {
   color: var(--dark-text);
   letter-spacing: 0.02em;
 }
-
 /* ==========================================
-   POPULAR TREATMENTS SECTION
+   REVIEW SYSTEM STYLING
+   ========================================== */
+.cta-section-review {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the stars and button */
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.cta-section-review h4 {
+  font-family: var(--font-heading);
+  color: var(--dark-text);
+  margin-top: var(--space-lg);
+}
+
+.stars {
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+.star {
+  transition: transform 0.2s ease;
+  filter: grayscale(100%) opacity(0.4); /* Muted when not selected */
+}
+
+/* When a star is active, show full color */
+.star.active {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+#review {
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  padding: var(--space-sm);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  margin: var(--space-sm) 0;
+  transition: border-color 0.3s ease;
+}
+
+#review:focus {
+  outline: none;
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 3px rgba(212, 150, 150, 0.1);
+}
+
+/* The displayed reviews */
+#reviews {
+    width: 100%;
+    max-width: 600px;
+    margin-top: var(--space-md);
+}
+
+.review-card {
+    background: var(--white);
+    padding: var(--space-sm);
+    border-radius: 15px;
+    margin-bottom: var(--space-sm);
+    text-align: left;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--primary-pink);
+    animation: fadeIn 0.4s ease;
+}
+.cta-section-review { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); text-align: center; }
+.stars { font-size: 1.5rem; cursor: pointer; display: flex; gap: 10px; justify-content: center; }
+.star { transition: transform 0.2s; filter: grayscale(100%) opacity(0.4); }
+.star.active { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
+
+/* The Viewport Magic */
+.reviews-viewport {
+    width: 100%; max-width: 600px; overflow: hidden; margin: var(--space-md) auto;
+}
+.reviews-container {
+    display: flex; transition: transform 0.5s ease-in-out; gap: 20px;
+}
+.review-card {
+    flex: 0 0 100%; /* Shows 1 review at a time */
+    background: var(--white); padding: var(--space-md); border-radius: 15px;
+    box-shadow: var(--shadow-sm); border-left: 4px solid var(--primary-pink);
+    text-align: left; animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* ==========================================
+   TOP TREATMENTS SECTION
    ========================================== */
 
 .popular-treatments h2 {
@@ -376,21 +504,8 @@ main {
 }
 
 .treatment-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  border-radius: 20px;
-  padding: var(--space-md);
-  flex: 1 1 280px;
-  max-width: 350px;
-  height: 380px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: var(--shadow-sm);
+  position: relative; height: 380px; width: 350px; border-radius: 20px;
+  background-size: cover; background-position: center; transition: 0.3s;
 }
 
 /* Dark gradient overlay for text readability */
@@ -460,8 +575,6 @@ main {
   background: var(--sage-green);
   color: var(--white);
 }
-
-/* CTA h2 and button alignment handled in pink accents section below */
 
 /* ==========================================
    AREA COVERED SECTION
@@ -564,14 +677,6 @@ main {
   max-width: 900px;
   margin: 0 auto;
 }
-.welcome{
-  font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--dark-text);
-}
-
 .treatment-title {
   margin-top: var(--space-lg);
   letter-spacing: 2px;
@@ -604,114 +709,99 @@ main {
 
 /* Main layout: photo left, text right */
 .about__container {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: var(--space-xl);
-  padding: var(--space-xl) var(--space-md);
-  max-width: 1000px;
-  margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-xl) 0;
+    margin-bottom: var(--space-xl);
 }
 
-/* Photo column */
 .foto_Sonia {
-  flex: 0 0 auto;
+    flex: 0 0 40%; /* Image takes up 40% of the row */
 }
 
 .foto_Sonia .sonia {
-  width: 300px;
-  height: 380px;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  border: 4px solid var(--primary-pink);
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 20px;
+    border: 4px solid var(--primary-pink);
+    box-shadow: var(--shadow-md);
+    object-fit: cover;
 }
 
-/* Text column */
 .intro {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--space-sm);
+    flex: 1;
 }
 
-.intro .intro__heading {
-  font-family: var(--font-heading);
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--dark-text);
-  margin-bottom: var(--space-xs);
+.intro__heading {
+    text-align: left; /* Keep the name left-aligned to match the bio */
+    margin-bottom: var(--space-sm);
 }
 
-.intro .intro__heading::after {
-  content: '';
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: var(--primary-pink);
-  margin-top: 0.5rem;
-  border-radius: 2px;
+.intro__heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-pink);
+    margin: 10px 0; /* Left aligned bar */
 }
 
-.intro p {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 400;
-  line-height: 1.9;
-  color: var(--light-text);
-  margin-bottom: 0;
-}
-
-/* Certificates section — sits below the bio */
+/* ==========================================
+   CERTIFICATES SECTION
+   ========================================== */
 .certificates {
-  padding: var(--space-xl) var(--space-md);
-  background-color: var(--white-nav);
-  border-top: 4px solid var(--primary-pink);
-  text-align: center;
-}
-
-.certificates h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--primary-pink);
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
-}
-
-.certificates > p {
-  color: var(--light-text);
-  margin: var(--space-xs) auto var(--space-lg);
-  max-width: 500px;
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
 }
 
 .certificates .photos {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
 }
 
 .certificates .nail-art {
-  width: 260px;
-  height: 200px;
-  border-radius: 14px;
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  border: 2px solid var(--border-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background-color: #f9f9f9; 
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .certificates .nail-art:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transform: scale(1.05);
 }
 
+/* ==========================================
+   MOBILE RESPONSIVENESS
+   ========================================== */
+@media (max-width: 768px) {
+    .about__container {
+        flex-direction: column; /* Stack image on top of text */
+        text-align: center;
+    }
+
+    .intro__heading {
+        text-align: center;
+    }
+
+    .intro__heading::after {
+        margin: 10px auto; /* Center the pink bar on mobile */
+    }
+
+    .foto_Sonia {
+        flex: 0 0 100%;
+        margin-bottom: var(--space-md);
+    }
+}
 
 
 /* ==========================================
@@ -876,24 +966,32 @@ main {
    RESPONSIVE — MOBILE (≤768px)
    ========================================== */
 @media (max-width: 768px) {
-  :root {
-    --nav-height: 70px;
-    --logo-size: 100px;
-    --logo-overflow: 35px;
+  /* 1. Reset the position so it fills the screen width */
+  .menu {
+    display: none; /* Keep it hidden initially */
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: var(--shadow-md);
+    z-index: 1001;
+    background-color: var(--white);
   }
 
-  body {
-    padding-top: calc(var(--nav-height) + var(--logo-overflow));
+  /* 2. This is the class our JavaScript "toggles" */
+  .menu.show-menu {
+    display: block !important;
   }
 
-  .topnav {
-    padding: 0 1rem;
+  /* 3. Make the links easier to tap with a thumb */
+  .menu li a {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1rem;
   }
-
-  .icon {
-    width: 22px;
-    height: 22px;
-  }
+}
 
   /* Full-width mobile dropdown */
   .menu {
@@ -967,7 +1065,7 @@ main {
   .footer__icons {
     justify-content: center;
   }
-}
+
 
 /* ==========================================
    RESPONSIVE — TABLET (769px–1024px)
