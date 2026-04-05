@@ -21,35 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadComponent("header", "header.html");
     loadComponent("footer", "footer.html");
 
-    // 2. MENU LOGIC FUNCTION
-    function setupMenu() {
-        const hamburger = document.getElementById('hamburger-btn');
-        const closeBtn = document.getElementById('close-btn');
-        const mainMenu = document.getElementById('main-menu');
-
-        console.log("Menu Setup Initialized"); // Check browser console to see this
-
-        if (hamburger && mainMenu) {
-            hamburger.addEventListener('click', (e) => {
-                e.preventDefault();
-                mainMenu.classList.add('active');
-            });
-        }
-
-        if (closeBtn && mainMenu) {
-            closeBtn.addEventListener('click', () => {
-                mainMenu.classList.remove('active');
-            });
-        }
-
-        // Close menu if a link is clicked
-        const links = document.querySelectorAll('.menu a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                mainMenu.classList.remove('active');
-            });
-        });
-    }
 
     // 3. REVIEW SYSTEM LOGIC 
     const stars = document.querySelectorAll(".star");
