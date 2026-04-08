@@ -540,9 +540,10 @@ main {
   margin-bottom: 0;
 }
 
-#card1 { background-image: url("/beautyApp/images/mani.1.png"); }
-#card2 { background-image: url("/beautyApp/images/pedi.JPG"); }
-#card3 { background-image: url("/beautyApp/images/french.JPG"); }
+/* Background images for each card */
+#card1 { background-image: url("images/mani.1.png"); }
+#card2 { background-image: url("images/pedi.JPG"); }
+#card3 { background-image: url("images/french.JPG"); }
 
 /* ==========================================
    BUTTONS
