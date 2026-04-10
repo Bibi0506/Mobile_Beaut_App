@@ -127,7 +127,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     }
-// Run setup immediately AND after a slight delay 
-// (Useful if your header is loaded via fetch/main.js)
-document.addEventListener('DOMContentLoaded', setupMenu ());
-window.onload = setupMenu();
