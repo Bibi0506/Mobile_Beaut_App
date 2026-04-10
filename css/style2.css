@@ -540,8 +540,8 @@ main {
 
 /* Background images for each card */
 #card1 { background-image: url("../images/mani.1.png"); }
-#card2 { background-image: url("images/pedi.JPG"); }
-#card3 { background-image: url("images/french.JPG"); }
+#card2 { background-image: url("../images/pedi.JPG"); }
+#card3 { background-image: url("../images/french.JPG"); }
 
 /* ==========================================
    BUTTONS
