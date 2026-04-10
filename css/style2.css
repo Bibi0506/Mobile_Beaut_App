@@ -1,6 +1,4 @@
-/* ==========================================
-   1. IMPORTS & VARIABLES
-   ========================================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;600&family=Great+Vibes&display=swap');
 
 :root {
@@ -541,7 +539,7 @@ main {
 }
 
 /* Background images for each card */
-#card1 { background-image: url("images/mani.1.png"); }
+#card1 { background-image: url("../images/mani.1.png"); }
 #card2 { background-image: url("images/pedi.JPG"); }
 #card3 { background-image: url("images/french.JPG"); }
 
