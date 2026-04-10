@@ -1,6 +1,8 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;600&family=Great+Vibes&display=swap');
 
+/* ==========================================
+   1. CSS VARIABLES
+   ========================================== */
 :root {
   /* Brand Colours */
   --primary-pink:   #D49696;
@@ -16,7 +18,7 @@
   --light-text:     #666666;
   --white:          #ffffff;
   --border-color:   #e8e8e8;
-  
+
   --shadow-sm:      0 2px 8px  rgba(0,0,0,0.10);
   --shadow-md:      0 6px 20px rgba(0,0,0,0.12);
   --shadow-lg:      0 12px 30px rgba(0,0,0,0.15);
@@ -25,8 +27,10 @@
   --font-body:      'Lato', 'Helvetica Neue', sans-serif;
   --font-script:    'Great Vibes', cursive;
 
-  --nav-height: 130px;
-  --logo-overflow: 50px;
+  --nav-height:     130px;
+  --logo-size:      200px;
+  --logo-overflow:  50px;
+
   --space-xs:  0.5rem;
   --space-sm:  1rem;
   --space-md:  2rem;
@@ -38,40 +42,12 @@
 /* ==========================================
    2. RESET & BASE STYLES
    ========================================== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--dark-text);
-  background-color: var(--white);
-  padding-top: calc(var(--nav-height) + var(--logo-overflow));
-}
-img { display: block; max-width: 100%; height: auto; }
-
-/* Typography */
-.welcome { font-family: var(--font-script); font-size: clamp(4rem, 12vw, 8rem); color: var(--dark-text); }
-h1 { font-family: var(--font-heading); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
-h2 { font-family: var(--font-heading); font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; text-align: center; }
-p { font-family: var(--font-body); color: var(--light-text); margin-bottom: var(--space-sm); }
-
-
-/* Nav height  */
-:root {
-  --nav-height: 130px;
-  --logo-size: 140px;
-  --logo-overflow: 50px; /* how much logo drops below nav */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  /* extra padding so hero content isn't hidden behind the overflowing logo */
-  padding-top: calc(var(--nav-height) + var(--logo-overflow));
-}
-
-/* ==========================================
-   BASE STYLES
-   ========================================== */
 html {
   scroll-behavior: smooth;
 }
@@ -82,6 +58,7 @@ body {
   line-height: 1.7;
   color: var(--dark-text);
   background-color: var(--white);
+  padding-top: calc(var(--nav-height) + var(--logo-overflow));
 }
 
 img {
@@ -91,7 +68,9 @@ img {
 }
 
 
-/* Display / script headings */
+/* ==========================================
+   3. TYPOGRAPHY
+   ========================================== */
 .welcome {
   font-family: var(--font-script);
   font-size: clamp(4rem, 12vw, 8rem);
@@ -100,7 +79,6 @@ img {
   color: var(--dark-text);
 }
 
-/* Section headings */
 h1 {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 5vw, 3.5rem);
@@ -115,6 +93,7 @@ h2 {
   font-weight: 600;
   line-height: 1.3;
   color: var(--dark-text);
+  text-align: center;
 }
 
 h3 {
@@ -132,7 +111,6 @@ h4, h5, h6 {
   color: var(--dark-text);
 }
 
-/* Body text — clean, readable */
 p {
   font-family: var(--font-body);
   font-weight: 400;
@@ -145,8 +123,9 @@ p:last-child {
   margin-bottom: 0;
 }
 
+
 /* ==========================================
-   LAYOUT UTILITY
+   4. LAYOUT UTILITY
    ========================================== */
 .container {
   max-width: 1200px;
@@ -162,8 +141,9 @@ p:last-child {
   font-family: var(--font-body);
 }
 
+
 /* ==========================================
-   HEADER / NAVIGATION
+   5. HEADER / NAVIGATION
    ========================================== */
 .topnav {
   display: flex;
@@ -199,32 +179,28 @@ p:last-child {
   opacity: 0.75;
 }
 
-/* CENTER - logo*/
+/* CENTER: logo */
 .topnav__center {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   flex: 1 1 auto;
-  /* let the logo spill out below */
   overflow: visible;
 }
 
 .logo-img {
   width: 200px;
   height: 200px;
-  /*width: var(--logo-size);
-  height: var(--logo-size);*/
   border-radius: 50%;
-  object-fit: contain;        /* show the full image, nothing cut off */
+  object-fit: contain;
   object-position: center;
-  background-color: var(--white); /* fills any transparent padding in the image */
-  border: 4px solid var(--primary-pink); /* pink brand ring */
+  background-color: var(--white);
+  border: 4px solid var(--primary-pink);
   box-shadow: 0 6px 20px rgba(0,0,0,0.18);
   transition: transform 0.3s ease;
-  /* push it down so half sits below the nav */
   transform: translateY(var(--logo-overflow));
   position: relative;
-  z-index: 1001; /* above the nav shadow */
+  z-index: 1001;
 }
 
 .logo-img:hover {
@@ -259,10 +235,13 @@ p:last-child {
   width: 28px;
   height: 28px;
 }
-/*OPEN AND CLOSE MENU*/
-/* --- Base Menu Styling --- */
+
+
+/* ==========================================
+   6. DROPDOWN MENU
+   ========================================== */
 .menu {
-  display: none; /* Hidden by default */
+  display: none;
   position: absolute;
   top: 100%;
   right: 0;
@@ -274,41 +253,24 @@ p:last-child {
   overflow: hidden;
 }
 
-/* This is the class our JavaScript will toggle */
 .menu.active {
-    display: block !important;
+  display: block;
 }
 
-/* --- The Close (X) Button --- */
 .close-menu {
-    display: block;
-    width: 100%;
-    text-align: right;
-    padding: 10px 20px;
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    line-height: 1;
-    cursor: pointer;
-    color: var(--primary-pink);
-    font-weight: 300;
+  display: block;
+  width: 100%;
+  text-align: right;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--primary-pink);
+  font-weight: 300;
 }
 
-/* --- Mobile Specific View --- */
-@media (max-width: 768px) {
-  .menu {
-    position: fixed; /* Overlays the screen */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-    }
-    
-  .menu ul {
-    padding-bottom: 2rem;
-    }
-}
 .menu ul {
   display: flex;
   flex-direction: column;
@@ -324,14 +286,14 @@ p:last-child {
 }
 
 .menu li a {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    text-decoration: none;
-    color: var(--dark-text);
-    font-weight: 500;
-    transition: all 0.2s ease;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--dark-text);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
 .menu li a:hover,
@@ -353,18 +315,14 @@ p:last-child {
   padding-left: 1.25rem !important;
 }
 
-.menu.active {
-  display: block !important;
-}
 
 /* ==========================================
-   MAIN
+   7. MAIN & HERO
    ========================================== */
 main {
   min-height: calc(100vh - var(--nav-height) - 300px);
 }
 
-/* HERO SECTION */
 .hero {
   display: flex;
   align-items: center;
@@ -390,109 +348,54 @@ main {
   color: var(--dark-text);
   letter-spacing: 0.02em;
 }
+
+
 /* ==========================================
-   REVIEW SYSTEM STYLING
+   8. PINK ACCENTS
    ========================================== */
-.cta-section-review {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centers the stars and button */
-  gap: var(--space-sm);
-  text-align: center;
+.popular-treatments {
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--white-nav);
+  border-top: 4px solid var(--primary-pink);
 }
-
-.cta-section-review h4 {
-  font-family: var(--font-heading);
-  color: var(--dark-text);
-  margin-top: var(--space-lg);
-}
-
-.stars {
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: flex;
-  gap: 10px;
-}
-
-.star {
-  transition: transform 0.2s ease;
-  filter: grayscale(100%) opacity(0.4); /* Muted when not selected */
-}
-
-/* When a star is active, show full color */
-.star.active {
-  filter: grayscale(0%) opacity(1);
-  transform: scale(1.1);
-}
-
-#review {
-  width: 100%;
-  max-width: 500px;
-  height: 100px;
-  padding: var(--space-sm);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  margin: var(--space-sm) 0;
-  transition: border-color 0.3s ease;
-}
-
-#review:focus {
-  outline: none;
-  border-color: var(--primary-pink);
-  box-shadow: 0 0 0 3px rgba(212, 150, 150, 0.1);
-}
-
-/* The displayed reviews */
-#reviews {
-    width: 100%;
-    max-width: 600px;
-    margin-top: var(--space-md);
-}
-
-.review-card {
-    background: var(--white);
-    padding: var(--space-sm);
-    border-radius: 15px;
-    margin-bottom: var(--space-sm);
-    text-align: left;
-    box-shadow: var(--shadow-sm);
-    border-left: 4px solid var(--primary-pink);
-    animation: fadeIn 0.4s ease;
-}
-.cta-section-review { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); text-align: center; }
-.stars { font-size: 1.5rem; cursor: pointer; display: flex; gap: 10px; justify-content: center; }
-.star { transition: transform 0.2s; filter: grayscale(100%) opacity(0.4); }
-.star.active { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
-
-/* The Viewport Magic */
-.reviews-viewport {
-    width: 100%; max-width: 600px; overflow: hidden; margin: var(--space-md) auto;
-}
-.reviews-container {
-    display: flex; transition: transform 0.5s ease-in-out; gap: 20px;
-}
-.review-card {
-    flex: 0 0 100%; /* Shows 1 review at a time */
-    background: var(--white); padding: var(--space-md); border-radius: 15px;
-    box-shadow: var(--shadow-sm); border-left: 4px solid var(--primary-pink);
-    text-align: left; animation: fadeIn 0.4s ease;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* ==========================================
-   TOP TREATMENTS SECTION
-   ========================================== */
 
 .popular-treatments h2 {
   text-align: center;
   margin-bottom: var(--space-xs);
 }
 
-/* Treatment grid */
+.popular-treatments h2::after,
+.area-covered h2::after,
+.cta-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-pink);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.cta-section {
+  padding: var(--space-xl) var(--space-md);
+  background: linear-gradient(135deg, rgba(212,150,150,0.18) 0%, var(--pale-taupe) 100%);
+  border-top: 4px solid var(--primary-pink);
+  border-bottom: 4px solid var(--primary-pink);
+}
+
+.cta-section h2 {
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.cta-section .generalButton {
+  justify-content: center;
+}
+
+
+/* ==========================================
+   9. TREATMENT GRID
+   ========================================== */
 .treatment-grid {
   display: flex;
   flex-wrap: wrap;
@@ -502,11 +405,15 @@ main {
 }
 
 .treatment-card {
-  position: relative; height: 380px; width: 350px; border-radius: 20px;
-  background-size: cover; background-position: center; transition: 0.3s;
+  position: relative;
+  height: 380px;
+  width: 350px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Dark gradient overlay for text readability */
 .treatment-card::before {
   content: '';
   position: absolute;
@@ -538,13 +445,13 @@ main {
   margin-bottom: 0;
 }
 
-/* Background images for each card */
 #card1 { background-image: url("../images/mani.1.png"); }
 #card2 { background-image: url("../images/pedi.JPG"); }
 #card3 { background-image: url("../images/french.JPG"); }
 
+
 /* ==========================================
-   BUTTONS
+   10. BUTTONS
    ========================================== */
 .generalButton {
   display: flex;
@@ -553,6 +460,28 @@ main {
   gap: var(--space-sm);
   padding: var(--space-sm) 0;
   justify-content: center;
+}
+
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-pink);
+  color: var(--white);
+  border: 2px solid var(--primary-pink);
+  padding: 0.75rem 1.75rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.primary-button:hover {
+  background: var(--warm-beige);
+  border-color: var(--warm-beige);
+  color: var(--white);
 }
 
 .secondary-button {
@@ -575,8 +504,9 @@ main {
   color: var(--white);
 }
 
+
 /* ==========================================
-   AREA COVERED SECTION
+   11. AREA COVERED SECTION
    ========================================== */
 .area-covered {
   padding: var(--space-xl) var(--space-md);
@@ -622,7 +552,6 @@ main {
   margin-bottom: var(--space-sm);
 }
 
-/* Location icon images */
 .location img {
   width: 48px;
   height: 48px;
@@ -641,13 +570,98 @@ main {
   font-size: 0.95rem;
 }
 
-/* ==========================================
-   TREATMENTS PAGE
-   ========================================== */
 
-.treatment__full__page{
+/* ==========================================
+   12. REVIEW SYSTEM
+   ========================================== */
+.cta-section-review {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+}
+
+.cta-section-review h4 {
+  font-family: var(--font-heading);
+  color: var(--dark-text);
+  margin-top: var(--space-lg);
+}
+
+.stars {
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.star {
+  transition: transform 0.2s ease;
+  filter: grayscale(100%) opacity(0.4);
+}
+
+.star.active {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.1);
+}
+
+#review {
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  padding: var(--space-sm);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  margin: var(--space-sm) 0;
+  transition: border-color 0.3s ease;
+}
+
+#review:focus {
+  outline: none;
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 3px rgba(212, 150, 150, 0.1);
+}
+
+.reviews-viewport {
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+  margin: var(--space-md) auto;
+}
+
+.reviews-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  gap: 20px;
+}
+
+.review-card {
+  flex: 0 0 100%;
+  background: var(--white);
+  padding: var(--space-md);
+  border-radius: 15px;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--primary-pink);
+  text-align: left;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==========================================
+   13. TREATMENTS FULL PAGE
+   ========================================== */
+.treatment__full__page {
   background: linear-gradient(to top, var(--primary-pink) 0%, rgba(212,150,150,0.08) 30%, transparent 60%);
 }
+
 .photos {
   display: flex;
   align-items: center;
@@ -676,6 +690,7 @@ main {
   max-width: 900px;
   margin: 0 auto;
 }
+
 .treatment-title {
   margin-top: var(--space-lg);
   letter-spacing: 2px;
@@ -685,7 +700,7 @@ main {
   font-size: 1.5rem;
   color: var(--dark-text);
   border-bottom: 2px solid var(--sage-green);
-  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   background-color: #ffb6c1;
   border-radius: 6px 6px 0 0;
 }
@@ -702,109 +717,87 @@ main {
 .treatment-row:last-child {
   border-bottom: none;
 }
-/* ==========================================
-   ABOUT ME
-   ========================================== */
 
-/* Main layout: photo left, text right */
+
+/* ==========================================
+   14. ABOUT ME
+   ========================================== */
 .about__container {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xl);
-    padding: var(--space-xl) 0;
-    margin-bottom: var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0;
+  margin-bottom: var(--space-xl);
 }
 
 .foto_Sonia {
-    flex: 0 0 40%; /* Image takes up 40% of the row */
+  flex: 0 0 40%;
 }
 
 .foto_Sonia .sonia {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: 20px;
-    border: 4px solid var(--primary-pink);
-    box-shadow: var(--shadow-md);
-    object-fit: cover;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border-radius: 20px;
+  border: 4px solid var(--primary-pink);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
 }
 
 .intro {
-    flex: 1;
+  flex: 1;
 }
 
 .intro__heading {
-    text-align: left; /* Keep the name left-aligned to match the bio */
-    margin-bottom: var(--space-sm);
+  text-align: left;
+  margin-bottom: var(--space-sm);
 }
 
 .intro__heading::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--primary-pink);
-    margin: 10px 0; /* Left aligned bar */
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-pink);
+  margin: 10px 0;
 }
 
+
 /* ==========================================
-   CERTIFICATES SECTION
+   15. CERTIFICATES SECTION
    ========================================== */
 .certificates {
-    padding: var(--space-xl) 0;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
 }
 
 .certificates .photos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-md);
-    margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .certificates .nail-art {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    background-color: #f9f9f9; 
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .certificates .nail-art:hover {
-    transform: scale(1.05);
-}
-
-/* ==========================================
-   MOBILE RESPONSIVENESS
-   ========================================== */
-@media (max-width: 768px) {
-    .about__container {
-        flex-direction: column; /* Stack image on top of text */
-        text-align: center;
-    }
-
-    .intro__heading {
-        text-align: center;
-    }
-
-    .intro__heading::after {
-        margin: 10px auto; /* Center the pink bar on mobile */
-    }
-
-    .foto_Sonia {
-        flex: 0 0 100%;
-        margin-bottom: var(--space-md);
-    }
+  transform: scale(1.05);
 }
 
 
 /* ==========================================
-   FOOTER
+   16. FOOTER
    ========================================== */
 .footer {
   display: flex;
@@ -815,6 +808,7 @@ main {
   padding: var(--space-lg) var(--space-md);
   margin-top: var(--space-lg);
   background-color: var(--sage-green);
+  border-top: 4px solid var(--primary-pink);
   box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
 }
 
@@ -829,7 +823,6 @@ main {
   font-size: 1.1rem;
 }
 
-/* Footer social icons */
 .footer__icons {
   display: flex;
   gap: var(--space-sm);
@@ -846,7 +839,6 @@ main {
   transform: scale(1.2) rotate(5deg);
 }
 
-/* Footer right */
 .footer__right {
   display: flex;
   flex-direction: column;
@@ -878,7 +870,6 @@ main {
   font-style: italic;
 }
 
-/* Footer bottom bar */
 .footer__bottom {
   width: 100%;
   display: flex;
@@ -892,118 +883,47 @@ main {
   font-size: 0.85rem;
 }
 
-/* ==========================================
-   PINK ACCENTS — brand colour touches
-   ========================================== */
-
-/* Thin pink top border on the popular treatments section */
-.popular-treatments {
-  padding: var(--space-xl) var(--space-md);
-  background-color: var(--white-nav);
-  border-top: 4px solid var(--primary-pink);
-}
-
-/* Pink underline on section h2 headings */
-.popular-treatments h2::after,
-.area-covered h2::after,
-.cta-section h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--primary-pink);
-  margin: 0.5rem auto 0;
-  border-radius: 2px;
-}
-
-/* Pink tint on the CTA section */
-.cta-section {
-  padding: var(--space-xl) var(--space-md);
-  background: linear-gradient(135deg, rgba(212,150,150,0.18) 0%, var(--pale-taupe) 100%);
-  border-top: 4px solid var(--primary-pink);
-  border-bottom: 4px solid var(--primary-pink);
-}
-
-.cta-section h2 {
-  text-align: center;
-  margin-bottom: var(--space-md);
-}
-
-.cta-section .generalButton {
-  justify-content: center;
-}
-
-/* Primary pink button variant */
-.primary-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-pink);
-  color: var(--white);
-  border: 2px solid var(--primary-pink);
-  padding: 0.75rem 1.75rem;
-  border-radius: 25px;
-  text-decoration: none;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: background 0.25s ease, border-color 0.25s ease;
-}
-
-.primary-button:hover {
-  background: var(--warm-beige);
-  border-color: var(--warm-beige);
-  color: var(--white);
-}
-
-/* Pink footer accent strip */
-.footer {
-  border-top: 4px solid var(--primary-pink);
-}
 
 /* ==========================================
-   RESPONSIVE — MOBILE (≤768px)
+   17. RESPONSIVE — MOBILE (max-width: 768px)
    ========================================== */
 @media (max-width: 768px) {
-  /* 1. Reset the position so it fills the screen width */
+
+  /* Shrink nav variables for mobile */
+  :root {
+    --nav-height:    90px;
+    --logo-size:     110px;
+    --logo-overflow: 30px;
+  }
+
+  /* Logo */
+  .logo-img {
+    width: var(--logo-size);
+    height: var(--logo-size);
+  }
+
+  /* Menu: full-screen overlay on mobile */
   .menu {
-    display: none; /* Keep it hidden initially */
     position: fixed;
-    top: var(--nav-height);
+    top: 0;
     left: 0;
-    right: 0;
     width: 100%;
+    height: auto;
     border-radius: 0;
     box-shadow: var(--shadow-md);
-    z-index: 1001;
-    background-color: var(--white);
+    z-index: 2000;
   }
 
-  /* 2. This is the class our JavaScript "toggles" */
-  .menu.show-menu {
-    display: block !important;
+  .menu ul {
+    padding-bottom: 2rem;
   }
 
-  /* 3. Make the links easier to tap with a thumb */
   .menu li a {
     padding: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
     font-size: 1.1rem;
   }
 
-
-  /* Full-width mobile dropdown */
-  .menu {
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    width: 100%;
-    border-radius: 0;
-    box-shadow: var(--shadow-md);
-  }
-
-  /* Hero extra top padding for logo on mobile */
+  /* Hero */
   .hero {
     padding-top: calc(var(--logo-overflow) + var(--space-lg));
   }
@@ -1012,18 +932,18 @@ main {
     font-size: 1rem;
   }
 
-  /* Treatment grid — full width cards on mobile */
+  /* Treatment grid — single column */
   .treatment-grid {
     flex-direction: column;
     align-items: stretch;
   }
 
   .treatment-card {
+    width: 100%;
     max-width: 100%;
-    flex: unset;
   }
 
-  /* Buttons — stack nicely */
+  /* Buttons — stack full width */
   .generalButton {
     flex-direction: column;
     align-items: stretch;
@@ -1035,7 +955,7 @@ main {
     justify-content: center;
   }
 
-  /* Benefits grid */
+  /* Benefits grid — single column */
   .benefits-grid {
     flex-direction: column;
     align-items: stretch;
@@ -1047,7 +967,26 @@ main {
     flex: unset;
   }
 
-  /* Footer */
+  /* About section — stack vertically */
+  .about__container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .foto_Sonia {
+    flex: 0 0 100%;
+    margin-bottom: var(--space-md);
+  }
+
+  .intro__heading {
+    text-align: center;
+  }
+
+  .intro__heading::after {
+    margin: 10px auto;
+  }
+
+  /* Footer — stack vertically */
   .footer {
     flex-direction: column;
     padding: var(--space-md) var(--space-sm);
@@ -1065,11 +1004,14 @@ main {
     justify-content: center;
   }
 
-}
+} /* end @media (max-width: 768px) */
+
+
 /* ==========================================
-   RESPONSIVE — TABLET (769px–1024px)
+   18. RESPONSIVE — TABLET (769px–1024px)
    ========================================== */
 @media (min-width: 769px) and (max-width: 1024px) {
+
   .treatment-grid,
   .benefits-grid {
     justify-content: space-evenly;
@@ -1080,4 +1022,5 @@ main {
   .location {
     flex: 1 1 calc(50% - var(--space-md));
   }
-}
+
+} /* end @media tablet */
